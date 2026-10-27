@@ -65,6 +65,15 @@ Hadith-Books/   ← put Hadith book PDFs here
 - Browser uploads allow up to **25 MB per file**. For larger PDFs use GitHub Desktop (up to 100 MB).
 - Adding PDFs never needs a new `.exe`.
 
+### Write links in a text file (cover page + title)
+Open `Quran-Theme/links.txt` or `Hadith-Books/links.txt` on GitHub (pencil icon) and add one line per book:
+
+```
+Title | PDF link | Cover picture link
+Sahih Bukhari | https://example.com/bukhari.pdf | https://example.com/bukhari-cover.jpg
+```
+The cover link is optional. Commit, wait for the green tick, then Settings → Library → **Update now** in the app.
+
 ### Other ways to add a book
 - **By link:** Settings → Library → *Add by link*. Works with direct `.pdf` links, GitHub file links, Dropbox, and Google Drive share links (small and medium files).
 - **From your computer:** Settings → Library → *Choose PDF…*
