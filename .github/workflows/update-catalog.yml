@@ -36,10 +36,20 @@ jobs:
           const enc = (p) => p.split('/').map(encodeURIComponent).join('/');
           const IMG = ['.jpg', '.jpeg', '.png', '.webp'];
 
+          function fromLinks(folder) {
+            const f = path.join(folder, 'links.txt');
+            if (!fs.existsSync(f)) return [];
+            return fs.readFileSync(f, 'utf8').split(/\r?\n/)
+              .map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
+              .map((l) => l.split('|').map((x) => x.trim()))
+              .filter((p) => p[0] && /^https?:\/\//i.test(p[1] || ''))
+              .map((p) => ({ title: p[0], url: p[1], thumb: /^https?:\/\//i.test(p[2] || '') ? p[2] : '' }));
+          }
+
           function scan(folder) {
             if (!fs.existsSync(folder)) return [];
             const files = fs.readdirSync(folder);
-            return files
+            return fromLinks(folder).concat(files
               .filter((f) => f.toLowerCase().endsWith('.pdf'))
               .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
               .map((f) => {
@@ -50,14 +60,13 @@ jobs:
                   url: base + enc(`${folder}/${f}`),
                   thumb: img ? base + enc(`${folder}/${img}`) : '',
                 };
-              });
+              }));
           }
 
           const catalog = { themes: scan('Quran-Theme'), hadith: scan('Hadith-Books') };
           fs.writeFileSync('catalog.json', JSON.stringify(catalog, null, 2) + '\n');
           fs.writeFileSync('config.json', JSON.stringify({ catalogUrl: base + 'catalog.json' }, null, 2) + '\n');
           console.log(`Quran themes: ${catalog.themes.length}, Hadith books: ${catalog.hadith.length}`);
-
           JSEOF
           node make-catalog.js
       - name: Save changes
