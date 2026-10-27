@@ -1,80 +1,133 @@
-# QuranBy
+<div align="center">
 
-Modern glassy Windows app: **Quran theme · Hadith Books · Quran Read · Hadith read · Text Quran · Settings**.
-It remembers where you stopped in every reader (Quran PDF, Hadith PDF, Text Quran).
+# 📖 QuranBy
 
-## Get the .exe (free, no coding)
+**A modern, glassy Windows app for reading the Quran and Hadith — and it remembers exactly where you stopped.**
 
-1. Create a free GitHub account → **New repository** (any name, e.g. `quranby`).
-2. On the repository page click **Add file → Upload files**, drag in **everything inside this folder**
-   (including the hidden `.github` folder), then **Commit changes**.
-   - If `.github` won't drag in: **Add file → Create new file**, type `.github/workflows/build.yml`, paste the contents of that file.
-3. Open the **Actions** tab → **Build QuranBy EXE** → wait ~3–5 minutes (green tick).
-   (If it did not start: click the workflow → **Run workflow**.)
-4. Click the finished run → **Artifacts → QuranBy-windows-exe** → download, unzip:
-   - `QuranBy-Setup-1.0.0.exe` – installer
-   - `QuranBy-Portable-1.0.0.exe` – no install, just run
+![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)
+![Built with](https://img.shields.io/badge/built%20with-Electron-47848F?logo=electron&logoColor=white)
+![Build](https://img.shields.io/badge/build-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-Windows may show "unknown publisher" (the app is not code-signed): **More info → Run anyway**.
+</div>
 
-## Add Quran themes / Hadith books — just upload PDFs (no code)
+---
 
-The repo has two folders: **`Quran-Theme`** and **`Hadith-Books`**.
+## ✨ Features
 
-1. Open the folder on GitHub → **Add file → Upload files** → drop your PDFs → **Commit changes**.
-2. Wait ~1 minute (Actions tab → "Update app library" turns green). It writes `catalog.json` by itself.
-3. Open the app → **Settings → Library → Update now** (or just restart it). Your PDFs appear in the
-   **Quran theme** / **Hadith Books** tab with **Download ⬇️**.
+| Tab | What it does |
+|---|---|
+| 🎨 **Quran theme** | Browse Quran PDF designs with preview thumbnails. Download, then select. |
+| 📚 **Hadith Books** | Browse Hadith book PDFs. Shows file size and download state. |
+| 📖 **Quran Read** | Reads your selected Quran PDF. Zoom, jump to page, **resumes at your last spot**. |
+| 📜 **Hadith read** | Reads your Hadith PDFs, with a **Continue reading** shortcut. |
+| 🔤 **Text Quran** | Arabic text with translations in many languages, search, surah list. **Resumes at your last verse**. |
+| ⚙️ **Settings** | Version name, themes, glass effect, fonts, sizes, library and more. |
 
-- The file name becomes the title (`Sahih_Bukhari.pdf` → "Sahih Bukhari").
-- Optional preview picture: upload an image with the same name (`Sahih_Bukhari.jpg`).
-- Repo must be **Public**. A single file uploaded in the browser can be up to 25 MB (bigger: use GitHub Desktop, limit 100 MB).
-- No new .exe is needed when you add PDFs. The exe only has to be built once (it already knows your repo link).
+- Glassy blur design with animated backgrounds, dark / light / auto mode and any accent colour
+- Saves your reading position in every reader, automatically
+- Add Quran themes and Hadith books **without writing any code**
+- Free to build and run, no server needed
 
-## Other ways to add themes / books
+---
 
-The Quran themes and Hadith books are **PDF files**. You only need a link to each PDF.
+## 🚀 Get the .exe (free, no coding)
 
-### Way 1 – inside the app (easiest)
-**Settings → Library → Add by link** → choose *Quran theme* or *Hadith book*, type a name, paste the link, **Add**.
-Then open the **Quran theme** or **Hadith Books** tab and press **Download ⬇️**.
+1. Create a free account at [github.com](https://github.com) and make a **new repository** (set it to **Public**).
+2. Click **Add file → Upload files**, drag in **everything from this project** (including the hidden `.github` folder), then **Commit changes**.
+   - If `.github` will not drag in: **Add file → Create new file**, type `.github/workflows/build.yml` and paste in the contents of that file. Repeat for `update-catalog.yml`.
+3. Open the **Actions** tab → **Build QuranBy EXE** → **Run workflow**. Wait about 3–5 minutes for the green tick.
+4. Open the finished run → **Artifacts → QuranBy-windows-exe** → download and unzip:
+   - `QuranBy-Setup-1.0.0.exe` — installer
+   - `QuranBy-Portable-1.0.0.exe` — no install, just run
 
-Links that work (just paste them as they are, the app converts them):
-- Direct link ending in `.pdf`
-- Google Drive: upload PDF → Share → *Anyone with the link* → copy link (small/medium files; very large Drive files show a warning page and will not download)
-- GitHub: open the PDF in your repo → copy the page address (the `.../blob/...` link)
-- Dropbox share link
+> Windows may say **"unknown publisher"** because the app is not code-signed. Click **More info → Run anyway**.
 
-Have the PDF on your computer already? **Settings → Library → Choose PDF…**
+---
 
-### Way 2 – one list for everybody (update without rebuilding)
-1. Put your PDFs anywhere with a link (for example in a GitHub repo, **Add file → Upload files**).
-2. In this project, click **catalog.json → pencil icon (edit)** and add lines like this (copy/paste, change the text):
-```json
-{
-  "themes": [
-    { "title": "Green Mushaf", "url": "https://example.com/green.pdf", "thumb": "" }
-  ],
-  "hadith": [
-    { "title": "Sahih Bukhari", "url": "https://example.com/bukhari.pdf", "thumb": "" }
-  ]
-}
+## 📚 Add Quran themes and Hadith books (just upload PDFs)
+
+The repository has two folders:
+
 ```
-   - Put a comma `,` between items, none after the last one.
-   - `thumb` is an optional picture link for the preview. Leave `""` to auto-generate it after download.
-3. Make it live for all apps: open `config.json`, put your raw link inside the quotes:
-   `https://raw.githubusercontent.com/YOUR-NAME/YOUR-REPO/main/catalog.json`
-   (or paste the same link in the app: **Settings → Library → Online catalog link → Update now**).
-   After that, every time you edit `catalog.json` on GitHub, the app picks it up – **no new .exe needed**.
+Quran-Theme/    ← put Quran PDFs here
+Hadith-Books/   ← put Hadith book PDFs here
+```
 
-## Text Quran
-Uses the free API from <https://github.com/fawazahmed0/quran-api> (hundreds of Arabic and translation editions, many languages).
-Pick the Arabic edition and the translation edition at the top, search words across the whole Quran, tap a surah on the left.
-Needs internet.
+1. Open a folder on GitHub → **Add file → Upload files** → drop your PDFs → **Commit changes**.
+2. Wait about a minute. The **Update app library** action writes `catalog.json` for you.
+3. In the app: **Settings → Library → Update now** (or restart). Your files appear with **Download ⬇️**.
 
-## Customize (Settings)
-Version name, light/dark/auto, accent colour, background style, glass blur & opacity, interface size, Arabic font and sizes,
-translation on/off, verse numbers, PDF zoom, remember-position switch, add/remove library items.
+**Tips**
+- The file name becomes the title: `Sahih_Bukhari.pdf` → *Sahih Bukhari*.
+- Want your own preview picture? Upload an image with the same name: `Sahih_Bukhari.jpg`. Otherwise the app makes one from page 1 after download.
+- The repo must be **Public**.
+- Browser uploads allow up to **25 MB per file**. For larger PDFs use GitHub Desktop (up to 100 MB).
+- Adding PDFs never needs a new `.exe`.
 
-## Run on your PC for testing (optional)
-Install Node.js, then in this folder: `npm install` and `npm start`.
+### Other ways to add a book
+- **By link:** Settings → Library → *Add by link*. Works with direct `.pdf` links, GitHub file links, Dropbox, and Google Drive share links (small and medium files).
+- **From your computer:** Settings → Library → *Choose PDF…*
+- **Edit `catalog.json` by hand:**
+  ```json
+  {
+    "themes": [{ "title": "Green Mushaf", "url": "https://example.com/green.pdf", "thumb": "" }],
+    "hadith": [{ "title": "Sahih Bukhari", "url": "https://example.com/bukhari.pdf", "thumb": "" }]
+  }
+  ```
+
+---
+
+## 🔤 Text Quran
+
+Powered by the free [fawazahmed0/quran-api](https://github.com/fawazahmed0/quran-api) (served from the jsDelivr CDN).
+
+- Choose an **Arabic edition** and a **translation edition** from many languages
+- Search words across the whole Quran
+- Tap any surah in the list. Needs an internet connection.
+
+---
+
+## 🎛️ Settings
+
+Version name · Dark / Light / Auto · accent colour · background style · glass blur and opacity · interface size · Arabic font and text size · translation size · show or hide translation and verse numbers · PDF zoom · remember-position switch · library manager · reset.
+
+---
+
+## 🗂️ Project structure
+
+```
+quranby/
+├─ main.js            Electron main process (downloads, files)
+├─ preload.js         Safe bridge to the UI
+├─ renderer/          UI (index.html, style.css, app.js)
+├─ Quran-Theme/       Your Quran PDFs
+├─ Hadith-Books/      Your Hadith PDFs
+├─ catalog.json       Library list (auto-generated)
+├─ config.json        Your repo's catalog link (auto-generated)
+├─ scripts/           make-catalog.js
+└─ .github/workflows/ build.yml, update-catalog.yml
+```
+
+## 🛠️ Run locally (optional)
+
+```bash
+npm install
+npm start          # run the app
+npm run dist       # build the Windows .exe
+```
+
+---
+
+## ❓ Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| Build did not start | Actions tab → *Build QuranBy EXE* → **Run workflow** |
+| New PDF not showing | Wait for the green tick in Actions, then Settings → Library → **Update now** |
+| Download fails | Make sure the repo is **Public** and the link opens a PDF directly |
+| Text Quran will not load | Check your internet connection and press **Retry** |
+
+## 📄 License
+
+MIT. Quran text data from [fawazahmed0/quran-api](https://github.com/fawazahmed0/quran-api); check its license for the editions you use.
