@@ -1,0 +1,5 @@
+# QURAN THEMES - one per line:   Title | PDF link | Cover picture link (optional)
+# Lines starting with # are ignored. Delete the example lines and write your own.
+#
+# Green Mushaf | https://drive.google.com/file/d/1Swv38PNEv2Nabd6OR2omwC7HLUNQyabA/view |
+# big quran | https://drive.google.com/file/d/17OEklHe7Im9JFcbklJ-K7MjAtGinkb6j/view |
