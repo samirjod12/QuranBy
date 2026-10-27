@@ -1,0 +1,49 @@
+name: Build QuranBy EXE
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+    paths-ignore:
+      - 'Quran-Theme/**'
+      - 'Hadith-Books/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build library list from the PDF folders
+        run: node scripts/make-catalog.js
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build EXE
+        run: npm run dist
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload EXE files
+        uses: actions/upload-artifact@v4
+        with:
+          name: QuranBy-windows-exe
+          path: |
+            dist/*.exe
+
+      - name: Publish release (only when you push a tag like v1.0.0)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.exe
