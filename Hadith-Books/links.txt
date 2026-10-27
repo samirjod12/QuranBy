@@ -1,0 +1,5 @@
+# HADITH BOOKS - one per line:   Title | PDF link | Cover picture link (optional)
+# Lines starting with # are ignored. Delete the example lines and write your own.
+#
+# Sahih Bukhari | https://example.com/bukhari.pdf | https://example.com/bukhari-cover.jpg
+# Sahih Muslim | https://example.com/muslim.pdf |
