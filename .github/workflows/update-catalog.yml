@@ -1,0 +1,30 @@
+name: Update app library (when PDFs are uploaded)
+
+on:
+  push:
+    paths:
+      - 'Quran-Theme/**'
+      - 'Hadith-Books/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate catalog.json from the folders
+        run: node scripts/make-catalog.js
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      - name: Save changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add catalog.json config.json
+          git diff --cached --quiet || (git commit -m "Update library list" && git push)
