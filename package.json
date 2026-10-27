@@ -1,0 +1,47 @@
+{
+  "name": "quranby",
+  "productName": "QuranBy",
+  "version": "1.0.0",
+  "description": "QuranBy - modern glassy Quran, Hadith & Text Quran reader that remembers where you stopped",
+  "main": "main.js",
+  "author": "QuranBy",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable --x64 --publish never"
+  },
+  "dependencies": {
+    "pdfjs-dist": "4.4.168"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.quranby.app",
+    "productName": "QuranBy",
+    "asar": false,
+    "directories": { "output": "dist" },
+    "files": [
+      "main.js",
+      "preload.js",
+      "catalog.json",
+      "config.json",
+      "renderer/**/*",
+      "node_modules/pdfjs-dist/build/pdf.min.mjs",
+      "node_modules/pdfjs-dist/build/pdf.worker.min.mjs"
+    ],
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "QuranBy-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "QuranBy-Portable-${version}.${ext}"
+    }
+  }
+}
