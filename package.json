@@ -21,7 +21,9 @@
     "appId": "com.quranby.app",
     "productName": "QuranBy",
     "asar": false,
-    "directories": { "output": "dist" },
+    "directories": {
+      "output": "dist"
+    },
     "files": [
       "main.js",
       "preload.js",
@@ -32,7 +34,10 @@
       "node_modules/pdfjs-dist/build/pdf.worker.min.mjs"
     ],
     "win": {
-      "target": ["nsis", "portable"],
+      "target": [
+        "nsis",
+        "portable"
+      ],
       "icon": "build/icon.png"
     },
     "nsis": {
@@ -42,6 +47,9 @@
     },
     "portable": {
       "artifactName": "QuranBy-Portable-${version}.${ext}"
-    }
+    },
+    "npmRebuild": false,
+    "nodeGypRebuild": false,
+    "buildDependenciesFromSource": false
   }
 }
